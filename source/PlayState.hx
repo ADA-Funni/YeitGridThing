@@ -125,7 +125,9 @@ class PlayState extends FlxState {
     function cropThatMotherfucker(source:BitmapData, x:Int, y:Int, width:Int, height:Int):BitmapData {
         var bmp = new BitmapData(width, height);
         bmp.copyPixels(source, new Rectangle(x, y, width, height), new Point(0,0));
+        #if EXPORT_GRID_PNG
         File.saveBytes('export/x=${Math.round(x / TILE_SIZE.x)}y=${Math.round(y / TILE_SIZE.y)}.png', bmp.encode(bmp.rect, new PNGEncoderOptions()));
+        #end
         return bmp;
     }
 }
